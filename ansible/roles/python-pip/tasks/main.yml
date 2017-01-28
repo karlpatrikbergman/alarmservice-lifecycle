@@ -1,0 +1,5 @@
+#- name: Package python-pip is present
+#  yum:
+#    name: python-pip
+#    state: present
+#  tags: [docker_container]

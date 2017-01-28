@@ -1,0 +1,5 @@
+docker_extra: ""
+
+centos_files: [
+  { src: "docker.daemon.json", dest: "/etc/docker/daemon.json" }
+]

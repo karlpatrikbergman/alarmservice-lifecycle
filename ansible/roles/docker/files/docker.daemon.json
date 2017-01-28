@@ -1,0 +1,6 @@
+{
+  "insecure-registries": [
+    "10.100.198.100:5000","172.17.0.2"
+  ],
+  "live-restore": true
+}

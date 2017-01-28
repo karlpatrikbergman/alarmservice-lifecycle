@@ -1,0 +1,48 @@
+- name: Get Docker repo file
+  command: yum-config-manager --add-repo https://docs.docker.com/engine/installation/linux/repo_files/centos/docker.repo
+
+- name: Disable testing
+  command: yum-config-manager --disable docker-testing
+
+- name: Update the yum package index
+  command: yum makecache fast
+
+- name: Install Docker engine package
+  yum:
+    name: docker-engine
+    state: present
+  tags: [docker]
+
+- name: Creates directory
+  file: path=/etc/docker state=directory
+
+- name: CentOS files are copied
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_items: "{{ centos_files }}"
+  tags: [docker]
+
+# Red Hat standard docker package
+#- name: Package docker is present
+#  yum:
+#    name: docker
+#    state: present
+#  tags: [docker]
+#
+#- name: Docker daemon configuration files are copied
+#  copy:
+#    src: "{{ item.src }}"
+#    dest: "{{ item.dest }}"
+#  with_items: "{{ centos_files }}"
+#  tags: [docker]
+
+- name: CentOS Daemon is reloaded
+  command: systemctl restart docker
+  tags: [docker]
+
+- name: Docker service is running
+  service:
+    name: docker
+    state: running
+  tags: [docker]

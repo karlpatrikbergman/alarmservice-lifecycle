@@ -1,0 +1,8 @@
+registry_host_dir: /vagrant/registry
+registry: 10.100.198.100:5000
+registry_url: 10.100.198.100:5000/
+docker_cfg: docker.cfg
+docker_cfg_dest: /etc/default/docker
+jenkins_version: 1.642.4
+jenkins_ip: 10.100.198.100
+

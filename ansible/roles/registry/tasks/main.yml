@@ -1,0 +1,27 @@
+#- name: Run docker registry
+#  command: docker run -d -p 5000:5000 --name registry registry:2
+#- name: Package docker-py is present
+#  pip:
+
+- name: Package python-pip is present
+  yum:
+    name: python-pip
+    state: present
+  tags: [docker_container]
+
+- name: Package docker-py is present
+  pip:
+    name: docker-py
+    version: 1.10.6
+    state: present
+  tags: [docker_container]
+
+- name: Registry container is running
+  docker_container:
+    name: registry
+    image: registry:2.1
+    ports: 5000:5000
+#    volumes:
+#      - "{{ registry_host_dir }}:/var/lib/registry/docker/registry"
+#      - /data/registry/conf:/conf
+  tags: [registry]
