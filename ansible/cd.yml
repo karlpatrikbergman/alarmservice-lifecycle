@@ -4,7 +4,7 @@
   roles:
 #    - java
     - docker
-#    - docker-compose
+    - docker-compose
 #    - git
 #    - python-pip
     - registry

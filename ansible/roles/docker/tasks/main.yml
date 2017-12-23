@@ -37,7 +37,7 @@
 #  with_items: "{{ centos_files }}"
 #  tags: [docker]
 
-- name: CentOS Daemon is reloaded
+- name: Docker daemon is reloaded
   command: systemctl restart docker
   tags: [docker]
 
